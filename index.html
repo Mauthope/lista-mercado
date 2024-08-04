@@ -8,15 +8,21 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
+      max-width: 100%;
+      margin: 0;
+      padding: 10px;
     }
 
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      margin: 0;
     }
 
     .controls {
@@ -26,17 +32,14 @@
       margin-bottom: 20px;
     }
 
-    .total-expense {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-
     select,
     input[type="text"],
     button {
-      width: 300px;
+      width: 100%;
+      max-width: 300px;
       padding: 10px;
       margin-bottom: 10px;
+      font-size: 1em;
     }
 
     ul {
@@ -49,37 +52,36 @@
       padding: 8px 0;
       border-bottom: 1px solid #ccc;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .item-info {
-      flex: 1;
+      width: 100%;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
     }
 
     .item-name {
-      flex: 1;
+      flex: 1 1 100%;
+      font-size: 1.1em;
+      margin-bottom: 5px;
     }
 
     .item-quantity,
     .item-price,
     .item-total {
-      width: 80px;
+      width: 100%;
+      max-width: 80px;
       margin-left: 10px;
+      margin-bottom: 5px;
     }
 
-    button {
-      background-color: #f44336;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #d32f2f;
+    .item-quantity-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
     }
 
     .complete-button {
@@ -88,14 +90,34 @@
       border: none;
       padding: 5px 10px;
       cursor: pointer;
+      font-size: 0.9em;
     }
 
     .complete-button:hover {
       background-color: #388e3c;
     }
 
+    button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-size: 0.9em;
+      margin-left: 5px;
+    }
+
+    button:hover {
+      background-color: #d32f2f;
+    }
+
     .completed {
-      background-color: #3be741;
+      background-color: #2ad430;
+    }
+
+    .total-expense {
+      font-size: 1.2em;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -106,12 +128,11 @@
     <div class="total-expense">Total Gasto: R$0.00</div>
   </div>
   <div class="controls">
-    <select id="item-dropdown">
-      <option value="">Selecione um item para adicionar</option>
+    <select id="item-dropdown" multiple size="10">
       <option value="Arroz branco">Arroz branco</option>
       <option value="Arroz Integral">Arroz Integral</option>
       <option value="Farinha">Farinha</option>
-      <option value="Açucar">Açucar</option>
+      <option value="Açúcar">Açúcar</option>
       <option value="Sal">Sal</option>
       <option value="Lentilha">Lentilha</option>
       <option value="Papel alumínio">Papel alumínio</option>
@@ -193,9 +214,8 @@
       <option value="sabão em barra">Sabão em barra</option>
     </select>
 
-    <button onclick="addItem()">Adicionar Item</button>
-
-    <input type="text" id="new-item" placeholder="Ou digite um item novo para adicionar">
+    <button onclick="addItem()">Adicionar Itens</button>
+    <input type="text" id="new-item" placeholder="Novo item" />
     <button onclick="addCustomItem()">Adicionar Item Personalizado</button>
   </div>
 
@@ -203,15 +223,10 @@
 
   <script>
     function addItem() {
-      const dropdown = document.getElementById('item-dropdown');
-      const item = dropdown.value;
+      const select = document.getElementById('item-dropdown');
+      const selectedItems = Array.from(select.selectedOptions).map(option => option.value);
 
-      if (item) {
-        addItemToList(item);
-        dropdown.value = ""; // Limpar seleção
-      } else {
-        alert('Por favor, selecione um item para adicionar.');
-      }
+      selectedItems.forEach(item => addItemToList(item));
     }
 
     function addCustomItem() {
@@ -233,7 +248,10 @@
       listItem.innerHTML = `
                 <div class="item-info">
                     <span class="item-name">${item}</span>
-                    <input type="number" class="item-quantity" value="1" min="1" onchange="calculateTotal(this)">
+                    <div class="item-quantity-container">
+                        <input type="number" class="item-quantity" value="1" min="0" step="0.01" onchange="calculateTotal(this)">
+                        <label><input type="checkbox" class="kg-checkbox" onchange="toggleKg(this)"> kg</label>
+                    </div>
                     <input type="number" class="item-price" placeholder="Valor" min="0" step="0.01" onchange="calculateTotal(this)">
                     <span class="item-total">Total: R$0.00</span>
                 </div>
@@ -243,10 +261,19 @@
       list.appendChild(listItem);
     }
 
+    function toggleKg(checkbox) {
+      const quantityInput = checkbox.parentNode.parentNode.querySelector('.item-quantity');
+      if (checkbox.checked) {
+        quantityInput.setAttribute('step', '0.01'); // Permitir incrementos de 0.01 kg
+      } else {
+        quantityInput.setAttribute('step', '1'); // Reverter para incrementos inteiros
+      }
+    }
+
     function calculateTotal(input) {
       const listItem = input.parentNode.parentNode;
-      const quantity = listItem.querySelector('.item-quantity').value;
-      const price = listItem.querySelector('.item-price').value;
+      const quantity = parseFloat(listItem.querySelector('.item-quantity').value);
+      const price = parseFloat(listItem.querySelector('.item-price').value);
       const totalElement = listItem.querySelector('.item-total');
       const total = (quantity * price).toFixed(2);
       totalElement.textContent = `Total: R$${total}`;
