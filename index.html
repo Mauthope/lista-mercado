@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Supermercado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .total-expense {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    select,
+    input[type="text"],
+    button {
+      width: 300px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      padding: 8px 0;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .item-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .item-name {
+      flex: 1;
+    }
+
+    .item-quantity,
+    .item-price,
+    .item-total {
+      width: 80px;
+      margin-left: 10px;
+    }
+
+    button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #d32f2f;
+    }
+
+    .complete-button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .complete-button:hover {
+      background-color: #388e3c;
+    }
+
+    .completed {
+      background-color: #3be741;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Lista de Supermercado</h1>
+    <div class="total-expense">Total Gasto: R$0.00</div>
+  </div>
+  <div class="controls">
+    <select id="item-dropdown">
+      <option value="">Selecione um item para adicionar</option>
+      <option value="Arroz branco">Arroz branco</option>
+      <option value="Arroz Integral">Arroz Integral</option>
+      <option value="Farinha">Farinha</option>
+      <option value="Açucar">Açucar</option>
+      <option value="Sal">Sal</option>
+      <option value="Lentilha">Lentilha</option>
+      <option value="Papel alumínio">Papel alumínio</option>
+      <option value="Saco de lixo">Saco de lixo</option>
+      <option value="Azeite de oliva">Azeite de oliva</option>
+      <option value="Vinagre branco">Vinagre branco</option>
+      <option value="Vinagre Uva">Vinagre Uva</option>
+      <option value="Café em pó">Café em pó</option>
+      <option value="Café soluvel">Café soluvel</option>
+      <option value="Barra cereal">Barra cereal</option>
+      <option value="Biscoito zero açucar">Biscoito zero açucar</option>
+      <option value="Geléia">Geléia</option>
+      <option value="Ovo">Ovo</option>
+      <option value="Banana">Banana</option>
+      <option value="Manga">Manga</option>
+      <option value="Limão">Limão</option>
+      <option value="Ameixa">Ameixa</option>
+      <option value="Cabotia">Cabotia</option>
+      <option value="Brocolis">Brocolis</option>
+      <option value="Cebola">Cebola</option>
+      <option value="Tomate">Tomate</option>
+      <option value="Cenoura">Cenoura</option>
+      <option value="Alho poró">Alho poró</option>
+      <option value="Alface">Alface</option>
+      <option value="Repolho">Repolho</option>
+      <option value="Batatinha">Batatinha</option>
+      <option value="Batata doce">Batata doce</option>
+      <option value="Iogurte">Iogurte</option>
+      <option value="Manteiga">Manteiga</option>
+      <option value="Lasanha">Lasanha</option>
+      <option value="Bife">Bife</option>
+      <option value="Carne Moída">Carne Moída</option>
+      <option value="Água com gás">Água com gás</option>
+      <option value="Água tônica">Água tônica</option>
+      <option value="Suco de uva integral">Suco de uva integral</option>
+      <option value="Lenço Lilo">Lenço Lilo</option>
+      <option value="Petisco Lilo">Petisco Lilo</option>
+      <option value="Sabão em pó">Sabão em pó</option>
+      <option value="Detergente">Detergente</option>
+      <option value="Limpador perfumado">Limpador perfumado</option>
+      <option value="Álcool">Álcool</option>
+      <option value="Esponja">Esponja</option>
+      <option value="Água sanitária">Água sanitária</option>
+      <option value="Pasta dental">Pasta dental</option>
+      <option value="Sabonete">Sabonete</option>
+      <option value="Shampoo">Shampoo</option>
+      <option value="condicionador">Condicionador</option>
+      <option value="Papel higiênico">Papel higiênico</option>
+      <option value="Fio dental">Fio dental</option>
+      <option value="Batata palha">Batata palha</option>
+      <option value="torradinha">Torradinha</option>
+      <option value="Salgadinho">Salgadinho</option>
+      <option value="Kitcat">Kitcat</option>
+      <option value="Polvilho">Polvilho</option>
+      <option value="Queijo">Queijo</option>
+      <option value="Queijo ligth">Queijo ligth</option>
+      <option value="Veneno mosquito">Veneno mosquito</option>
+      <option value="Milho">Milho</option>
+      <option value="Massa">Massa</option>
+      <option value="Maionese">Maionese</option>
+      <option value="Maionese 3 em 1">Maionese 3 em 1</option>
+      <option value="Massa de tomate">Massa de tomate</option>
+      <option value="Mistura pra bolo">Mistura pra bolo</option>
+      <option value="Chocolate em pó">Chocolate em pó</option>
+      <option value="Rap 10">Rap 10</option>
+      <option value="Tomate italiano">Tomate italiano</option>
+      <option value="Pimentão">Pimentão</option>
+      <option value="Uva">Uva</option>
+      <option value="Padaria">Padaria</option>
+      <option value="Acetona">Acetona</option>
+      <option value="requeijão">Requeijão</option>
+      <option value="bis">Bis</option>
+      <option value="bolacha salgada">Bolacha salgada</option>
+      <option value="pizza">Pizza</option>
+      <option value="Bolinha de queijo">Bolinha de queijo</option>
+      <option value="Papel toalha">Papel toalha</option>
+      <option value="leite">Leite</option>
+      <option value="absorvente">Absorvente</option>
+      <option value="sabão em barra">Sabão em barra</option>
+    </select>
+
+    <button onclick="addItem()">Adicionar Item</button>
+
+    <input type="text" id="new-item" placeholder="Ou digite um item novo para adicionar">
+    <button onclick="addCustomItem()">Adicionar Item Personalizado</button>
+  </div>
+
+  <ul id="shopping-list"></ul>
+
+  <script>
+    function addItem() {
+      const dropdown = document.getElementById('item-dropdown');
+      const item = dropdown.value;
+
+      if (item) {
+        addItemToList(item);
+        dropdown.value = ""; // Limpar seleção
+      } else {
+        alert('Por favor, selecione um item para adicionar.');
+      }
+    }
+
+    function addCustomItem() {
+      const input = document.getElementById('new-item');
+      const item = input.value.trim();
+
+      if (item) {
+        addItemToList(item);
+        input.value = ""; // Limpar campo de texto
+      } else {
+        alert('Por favor, digite um item para adicionar.');
+      }
+    }
+
+    function addItemToList(item) {
+      const list = document.getElementById('shopping-list');
+      const listItem = document.createElement('li');
+
+      listItem.innerHTML = `
+                <div class="item-info">
+                    <span class="item-name">${item}</span>
+                    <input type="number" class="item-quantity" value="1" min="1" onchange="calculateTotal(this)">
+                    <input type="number" class="item-price" placeholder="Valor" min="0" step="0.01" onchange="calculateTotal(this)">
+                    <span class="item-total">Total: R$0.00</span>
+                </div>
+                <button class="complete-button" onclick="markAsComplete(this)">Concluir</button>
+                <button onclick="removeItem(this)">Remover</button>
+            `;
+      list.appendChild(listItem);
+    }
+
+    function calculateTotal(input) {
+      const listItem = input.parentNode.parentNode;
+      const quantity = listItem.querySelector('.item-quantity').value;
+      const price = listItem.querySelector('.item-price').value;
+      const totalElement = listItem.querySelector('.item-total');
+      const total = (quantity * price).toFixed(2);
+      totalElement.textContent = `Total: R$${total}`;
+
+      updateTotalExpense();
+    }
+
+    function updateTotalExpense() {
+      const totals = document.querySelectorAll('.completed .item-total');
+      let totalExpense = 0;
+
+      totals.forEach(total => {
+        const value = parseFloat(total.textContent.replace('Total: R$', ''));
+        totalExpense += isNaN(value) ? 0 : value;
+      });
+
+      const totalExpenseElement = document.querySelector('.total-expense');
+      totalExpenseElement.textContent = `Total Gasto: R$${totalExpense.toFixed(2)}`;
+    }
+
+    function removeItem(button) {
+      const listItem = button.parentNode;
+      listItem.parentNode.removeChild(listItem);
+      updateTotalExpense();
+    }
+
+    function markAsComplete(button) {
+      const listItem = button.parentNode;
+      listItem.classList.toggle('completed');
+      updateTotalExpense();
+    }
+  </script>
+</body>
+
+</html>
