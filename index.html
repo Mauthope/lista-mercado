@@ -2,291 +2,275 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Supermercado</title>
-  <style>
-    /* Seu CSS original */
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 100%;
-      margin: 0;
-      padding: 10px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Supermercado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 100%;
+            margin: 0;
+            padding: 10px;
+        }
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
 
-    h1 {
-      font-size: 1.5em;
-      margin: 0;
-    }
+        h1 {
+            font-size: 1.5em;
+            margin: 0;
+        }
 
-    .controls {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
 
-    select,
-    input[type="text"],
-    button {
-      width: 100%;
-      max-width: 300px;
-      padding: 10px;
-      margin-bottom: 10px;
-      font-size: 1em;
-    }
+        select,
+        input[type="text"],
+        button {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
 
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-    li {
-      padding: 8px 0;
-      border-bottom: 1px solid #ccc;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
+        li {
+            padding: 8px 0;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
 
-    .item-info {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-    }
+        .item-info {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
 
-    .item-name {
-      flex: 1 1 100%;
-      font-size: 1.1em;
-      margin-bottom: 5px;
-    }
+        .item-name {
+            flex: 1 1 100%;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
 
-    .item-quantity,
-    .item-price,
-    .item-total {
-      width: 100%;
-      max-width: 80px;
-      margin-left: 10px;
-      margin-bottom: 5px;
-    }
+        .item-quantity,
+        .item-price,
+        .item-total {
+            width: 100%;
+            max-width: 80px;
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
 
-    .item-quantity-container {
-      display: flex;
-      align-items: center;
-      margin-bottom: 5px;
-    }
+        .complete-button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
 
-    .complete-button {
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 0.9em;
-    }
+        .complete-button:hover {
+            background-color: #388e3c;
+        }
 
-    .complete-button:hover {
-      background-color: #388e3c;
-    }
+        button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
 
-    button {
-      background-color: #f44336;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      font-size: 0.9em;
-      margin-left: 5px;
-    }
+        button:hover {
+            background-color: #d32f2f;
+        }
 
-    button:hover {
-      background-color: #d32f2f;
-    }
+        .completed {
+            background-color: #2ad430;
+        }
 
-    .completed {
-      background-color: #2ad430;
-    }
-
-    .total-expense {
-      font-size: 1.2em;
-      font-weight: bold;
-    }
-  </style>
+        .total-expense {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="header">
-    <h1>Lista de Supermercado</h1>
-    <div class="total-expense">Total Gasto: R$0.00</div>
-  </div>
-  <div class="controls">
-    <select id="item-dropdown" multiple size="10">
-      <option value="Arroz branco">Arroz branco</option>
-      <!-- Mais opções aqui -->
-      <option value="Leite">Leite</option>
-      <option value="Sabão em barra">Sabão em barra</option>
-    </select>
+    <div class="header">
+        <h1>Lista de Supermercado</h1>
+        <div class="total-expense">Total Gasto: R$0.00</div>
+    </div>
+    <div class="controls">
+        <select id="item-dropdown" multiple size="10">
+            <option value="Arroz branco">Arroz branco</option>
+            <option value="Feijão">Feijão</option>
+            <option value="Leite">Leite</option>
+            <option value="Ovos">Ovos</option>
+            <option value="Sabão em barra">Sabão em barra</option>
+        </select>
 
-    <button onclick="addItem()">Adicionar Itens</button>
-    <input type="text" id="new-item" placeholder="Novo item" />
-    <button onclick="addCustomItem()">Adicionar Item Personalizado</button>
-    <button onclick="salvarLista()">Salvar Lista</button>
-    <button onclick="baixarExcel()">Baixar Excel</button>
-  </div>
+        <button onclick="addItem()">Adicionar Itens</button>
+        <input type="text" id="new-item" placeholder="Novo item" />
+        <button onclick="addCustomItem()">Adicionar Item Personalizado</button>
+        <button onclick="salvarLista()">Salvar Lista</button>
+        <button onclick="baixarExcel()">Baixar Excel</button>
+    </div>
 
-  <ul id="shopping-list"></ul>
+    <ul id="shopping-list"></ul>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      carregarLista();
-    });
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            carregarLista();
+        });
 
-    function addItem() {
-      const select = document.getElementById('item-dropdown');
-      const selectedItems = Array.from(select.selectedOptions).map(option => option.value);
+        function addItem() {
+            const select = document.getElementById('item-dropdown');
+            const selectedItems = Array.from(select.selectedOptions).map(option => option.value);
 
-      selectedItems.forEach(item => addItemToList(item));
-    }
+            selectedItems.forEach(item => addItemToList(item));
+        }
 
-    function addCustomItem() {
-      const input = document.getElementById('new-item');
-      const item = input.value.trim();
+        function addCustomItem() {
+            const input = document.getElementById('new-item');
+            const item = input.value.trim();
 
-      if (item) {
-        addItemToList(item);
-        input.value = ""; // Limpar campo de texto
-      } else {
-        alert('Por favor, digite um item para adicionar.');
-      }
-    }
+            if (item) {
+                addItemToList(item);
+                input.value = ""; // Limpar campo de texto
+            } else {
+                alert('Por favor, digite um item para adicionar.');
+            }
+        }
 
-    function addItemToList(item) {
-      const list = document.getElementById('shopping-list');
-      const listItem = document.createElement('li');
+        function addItemToList(item) {
+            const list = document.getElementById('shopping-list');
+            const listItem = document.createElement('li');
 
-      listItem.innerHTML = `
+            listItem.innerHTML = `
                 <div class="item-info">
                     <span class="item-name">${item}</span>
-                    <div class="item-quantity-container">
-                        <input type="number" class="item-quantity" value="1" min="0" step="0.01" onchange="calculateTotal(this)">
-                        <label><input type="checkbox" class="kg-checkbox" onchange="toggleKg(this)"> kg</label>
-                    </div>
+                    <input type="number" class="item-quantity" value="1" min="0" step="1" onchange="calculateTotal(this)">
                     <input type="number" class="item-price" placeholder="Valor" min="0" step="0.01" onchange="calculateTotal(this)">
                     <span class="item-total">Total: R$0.00</span>
                 </div>
                 <button class="complete-button" onclick="markAsComplete(this)">Concluir</button>
                 <button onclick="removeItem(this)">Remover</button>
             `;
-      list.appendChild(listItem);
-      salvarLista();
-    }
-
-    function toggleKg(checkbox) {
-      const quantityInput = checkbox.parentNode.parentNode.querySelector('.item-quantity');
-      if (checkbox.checked) {
-        quantityInput.setAttribute('step', '0.01'); // Permitir incrementos de 0.01 kg
-      } else {
-        quantityInput.setAttribute('step', '1'); // Reverter para incrementos inteiros
-      }
-    }
-
-    function calculateTotal(input) {
-      const listItem = input.parentNode.parentNode;
-      const quantity = parseFloat(listItem.querySelector('.item-quantity').value);
-      const price = parseFloat(listItem.querySelector('.item-price').value);
-      const totalElement = listItem.querySelector('.item-total');
-      const total = (quantity * price).toFixed(2);
-      totalElement.textContent = `Total: R$${total}`;
-
-      updateTotalExpense();
-    }
-
-    function updateTotalExpense() {
-      const totals = document.querySelectorAll('.completed .item-total');
-      let totalExpense = 0;
-
-      totals.forEach(total => {
-        const value = parseFloat(total.textContent.replace('Total: R$', ''));
-        totalExpense += isNaN(value) ? 0 : value;
-      });
-
-      const totalExpenseElement = document.querySelector('.total-expense');
-      totalExpenseElement.textContent = `Total Gasto: R$${totalExpense.toFixed(2)}`;
-    }
-
-    function removeItem(button) {
-      const listItem = button.parentNode;
-      listItem.parentNode.removeChild(listItem);
-      salvarLista();
-      updateTotalExpense();
-    }
-
-    function markAsComplete(button) {
-      const listItem = button.parentNode;
-      listItem.classList.toggle('completed');
-      salvarLista();
-      updateTotalExpense();
-    }
-
-    // Funções de LocalStorage
-
-    function salvarLista() {
-      const items = [];
-      const listItems = document.querySelectorAll('#shopping-list li');
-      listItems.forEach(listItem => {
-        const item = {
-          name: listItem.querySelector('.item-name').textContent,
-          quantity: listItem.querySelector('.item-quantity').value,
-          price: listItem.querySelector('.item-price').value,
-          completed: listItem.classList.contains('completed')
-        };
-        items.push(item);
-      });
-      localStorage.setItem('shoppingList', JSON.stringify(items));
-    }
-
-    function carregarLista() {
-      const savedItems = JSON.parse(localStorage.getItem('shoppingList')) || [];
-      savedItems.forEach(item => {
-        addItemToList(item.name);
-        const listItem = document.querySelectorAll('#shopping-list li:last-child')[0];
-        listItem.querySelector('.item-quantity').value = item.quantity;
-        listItem.querySelector('.item-price').value = item.price;
-        if (item.completed) {
-          listItem.classList.add('completed');
+            list.appendChild(listItem);
+            salvarLista();
         }
-      });
-      updateTotalExpense();
-    }
 
-    // Baixar dados como Excel
-    function baixarExcel() {
-      const items = JSON.parse(localStorage.getItem('shoppingList')) || [];
-      let csvContent = "data:text/csv;charset=utf-8,Item,Quantidade,Preço\n";
+        function calculateTotal(input) {
+            const listItem = input.parentNode;
+            const quantity = parseFloat(listItem.querySelector('.item-quantity').value);
+            const price = parseFloat(listItem.querySelector('.item-price').value);
+            const totalElement = listItem.querySelector('.item-total');
+            const total = (quantity * price).toFixed(2);
+            totalElement.textContent = `Total: R$${total}`;
 
-      items.forEach(item => {
-        const row = `${item.name},${item.quantity},${item.price}\n`;
-        csvContent += row;
-      });
+            updateTotalExpense();
+        }
 
-      const encodedUri = encodeURI(csvContent);
-      const link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "lista_supermercado.csv");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
-  </script>
+        function updateTotalExpense() {
+            const totals = document.querySelectorAll('.item-total');
+            let totalExpense = 0;
+
+            totals.forEach(total => {
+                const value = parseFloat(total.textContent.replace('Total: R$', ''));
+                totalExpense += isNaN(value) ? 0 : value;
+            });
+
+            const totalExpenseElement = document.querySelector('.total-expense');
+            totalExpenseElement.textContent = `Total Gasto: R$${totalExpense.toFixed(2)}`;
+        }
+
+        function removeItem(button) {
+            const listItem = button.parentNode;
+            listItem.parentNode.removeChild(listItem);
+            salvarLista();
+            updateTotalExpense();
+        }
+
+        function markAsComplete(button) {
+            const listItem = button.parentNode;
+            listItem.classList.toggle('completed');
+            salvarLista();
+            updateTotalExpense();
+        }
+
+        // Funções de LocalStorage
+
+        function salvarLista() {
+            const items = [];
+            const listItems = document.querySelectorAll('#shopping-list li');
+            listItems.forEach(listItem => {
+                const item = {
+                    name: listItem.querySelector('.item-name').textContent,
+                    quantity: listItem.querySelector('.item-quantity').value,
+                    price: listItem.querySelector('.item-price').value,
+                    total: listItem.querySelector('.item-total').textContent.replace('Total: R$', ''),
+                    completed: listItem.classList.contains('completed')
+                };
+                items.push(item);
+            });
+            localStorage.setItem('shoppingList', JSON.stringify(items));
+        }
+
+        function carregarLista() {
+            const savedItems = JSON.parse(localStorage.getItem('shoppingList')) || [];
+            savedItems.forEach(item => {
+                addItemToList(item.name);
+                const listItem = document.querySelectorAll('#shopping-list li:last-child')[0];
+                listItem.querySelector('.item-quantity').value = item.quantity;
+                listItem.querySelector('.item-price').value = item.price;
+                listItem.querySelector('.item-total').textContent = `Total: R$${item.total}`;
+                if (item.completed) {
+                    listItem.classList.add('completed');
+                }
+            });
+            updateTotalExpense();
+        }
+
+        // Função para baixar dados como CSV
+        function baixarExcel() {
+            const items = JSON.parse(localStorage.getItem('shoppingList')) || [];
+            let csvContent = "data:text/csv;charset=utf-8,Item,Quantidade,Preço,Total\n";
+
+            items.forEach(item => {
+                const row = `${item.name},${item.quantity},${item.price},${item.total}\n`;
+                csvContent += row;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "lista_supermercado.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
 </body>
 
 </html>
