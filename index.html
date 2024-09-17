@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de Supermercado</title>
   <style>
+    /* Seu CSS original */
     body {
       font-family: Arial, sans-serif;
       max-width: 100%;
@@ -130,98 +131,25 @@
   <div class="controls">
     <select id="item-dropdown" multiple size="10">
       <option value="Arroz branco">Arroz branco</option>
-      <option value="Arroz Integral">Arroz Integral</option>
-      <option value="Farinha">Farinha</option>
-      <option value="Açúcar">Açúcar</option>
-      <option value="Sal">Sal</option>
-      <option value="Lentilha">Lentilha</option>
-      <option value="Papel alumínio">Papel alumínio</option>
-      <option value="Saco de lixo">Saco de lixo</option>
-      <option value="Azeite de oliva">Azeite de oliva</option>
-      <option value="Vinagre branco">Vinagre branco</option>
-      <option value="Vinagre Uva">Vinagre Uva</option>
-      <option value="Café em pó">Café em pó</option>
-      <option value="Café soluvel">Café soluvel</option>
-      <option value="Barra cereal">Barra cereal</option>
-      <option value="Biscoito zero açucar">Biscoito zero açucar</option>
-      <option value="Geléia">Geléia</option>
-      <option value="Ovo">Ovo</option>
-      <option value="Banana">Banana</option>
-      <option value="Manga">Manga</option>
-      <option value="Limão">Limão</option>
-      <option value="Ameixa">Ameixa</option>
-      <option value="Cabotia">Cabotia</option>
-      <option value="Brocolis">Brocolis</option>
-      <option value="Cebola">Cebola</option>
-      <option value="Tomate">Tomate</option>
-      <option value="Cenoura">Cenoura</option>
-      <option value="Alho poró">Alho poró</option>
-      <option value="Alface">Alface</option>
-      <option value="Repolho">Repolho</option>
-      <option value="Batatinha">Batatinha</option>
-      <option value="Batata doce">Batata doce</option>
-      <option value="Iogurte">Iogurte</option>
-      <option value="Manteiga">Manteiga</option>
-      <option value="Lasanha">Lasanha</option>
-      <option value="Bife">Bife</option>
-      <option value="Carne Moída">Carne Moída</option>
-      <option value="Água com gás">Água com gás</option>
-      <option value="Água tônica">Água tônica</option>
-      <option value="Suco de uva integral">Suco de uva integral</option>
-      <option value="Lenço Lilo">Lenço Lilo</option>
-      <option value="Petisco Lilo">Petisco Lilo</option>
-      <option value="Sabão em pó">Sabão em pó</option>
-      <option value="Detergente">Detergente</option>
-      <option value="Limpador perfumado">Limpador perfumado</option>
-      <option value="Álcool">Álcool</option>
-      <option value="Esponja">Esponja</option>
-      <option value="Água sanitária">Água sanitária</option>
-      <option value="Pasta dental">Pasta dental</option>
-      <option value="Sabonete">Sabonete</option>
-      <option value="Shampoo">Shampoo</option>
-      <option value="condicionador">Condicionador</option>
-      <option value="Papel higiênico">Papel higiênico</option>
-      <option value="Fio dental">Fio dental</option>
-      <option value="Batata palha">Batata palha</option>
-      <option value="torradinha">Torradinha</option>
-      <option value="Salgadinho">Salgadinho</option>
-      <option value="Kitcat">Kitcat</option>
-      <option value="Polvilho">Polvilho</option>
-      <option value="Queijo">Queijo</option>
-      <option value="Queijo ligth">Queijo ligth</option>
-      <option value="Veneno mosquito">Veneno mosquito</option>
-      <option value="Milho">Milho</option>
-      <option value="Massa">Massa</option>
-      <option value="Maionese">Maionese</option>
-      <option value="Maionese 3 em 1">Maionese 3 em 1</option>
-      <option value="Massa de tomate">Massa de tomate</option>
-      <option value="Mistura pra bolo">Mistura pra bolo</option>
-      <option value="Chocolate em pó">Chocolate em pó</option>
-      <option value="Rap 10">Rap 10</option>
-      <option value="Tomate italiano">Tomate italiano</option>
-      <option value="Pimentão">Pimentão</option>
-      <option value="Uva">Uva</option>
-      <option value="Padaria">Padaria</option>
-      <option value="Acetona">Acetona</option>
-      <option value="requeijão">Requeijão</option>
-      <option value="bis">Bis</option>
-      <option value="bolacha salgada">Bolacha salgada</option>
-      <option value="pizza">Pizza</option>
-      <option value="Bolinha de queijo">Bolinha de queijo</option>
-      <option value="Papel toalha">Papel toalha</option>
-      <option value="leite">Leite</option>
-      <option value="absorvente">Absorvente</option>
-      <option value="sabão em barra">Sabão em barra</option>
+      <!-- Mais opções aqui -->
+      <option value="Leite">Leite</option>
+      <option value="Sabão em barra">Sabão em barra</option>
     </select>
 
     <button onclick="addItem()">Adicionar Itens</button>
     <input type="text" id="new-item" placeholder="Novo item" />
     <button onclick="addCustomItem()">Adicionar Item Personalizado</button>
+    <button onclick="salvarLista()">Salvar Lista</button>
+    <button onclick="baixarExcel()">Baixar Excel</button>
   </div>
 
   <ul id="shopping-list"></ul>
 
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      carregarLista();
+    });
+
     function addItem() {
       const select = document.getElementById('item-dropdown');
       const selectedItems = Array.from(select.selectedOptions).map(option => option.value);
@@ -259,6 +187,7 @@
                 <button onclick="removeItem(this)">Remover</button>
             `;
       list.appendChild(listItem);
+      salvarLista();
     }
 
     function toggleKg(checkbox) {
@@ -297,13 +226,65 @@
     function removeItem(button) {
       const listItem = button.parentNode;
       listItem.parentNode.removeChild(listItem);
+      salvarLista();
       updateTotalExpense();
     }
 
     function markAsComplete(button) {
       const listItem = button.parentNode;
       listItem.classList.toggle('completed');
+      salvarLista();
       updateTotalExpense();
+    }
+
+    // Funções de LocalStorage
+
+    function salvarLista() {
+      const items = [];
+      const listItems = document.querySelectorAll('#shopping-list li');
+      listItems.forEach(listItem => {
+        const item = {
+          name: listItem.querySelector('.item-name').textContent,
+          quantity: listItem.querySelector('.item-quantity').value,
+          price: listItem.querySelector('.item-price').value,
+          completed: listItem.classList.contains('completed')
+        };
+        items.push(item);
+      });
+      localStorage.setItem('shoppingList', JSON.stringify(items));
+    }
+
+    function carregarLista() {
+      const savedItems = JSON.parse(localStorage.getItem('shoppingList')) || [];
+      savedItems.forEach(item => {
+        addItemToList(item.name);
+        const listItem = document.querySelectorAll('#shopping-list li:last-child')[0];
+        listItem.querySelector('.item-quantity').value = item.quantity;
+        listItem.querySelector('.item-price').value = item.price;
+        if (item.completed) {
+          listItem.classList.add('completed');
+        }
+      });
+      updateTotalExpense();
+    }
+
+    // Baixar dados como Excel
+    function baixarExcel() {
+      const items = JSON.parse(localStorage.getItem('shoppingList')) || [];
+      let csvContent = "data:text/csv;charset=utf-8,Item,Quantidade,Preço\n";
+
+      items.forEach(item => {
+        const row = `${item.name},${item.quantity},${item.price}\n`;
+        csvContent += row;
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "lista_supermercado.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   </script>
 </body>
